@@ -137,8 +137,8 @@ function createSiteElement(comparison) {
 
   if (isAlignTimelineEnabled) {
     const maxMsTimestamp = comparison.runA.screenshots
-      .concat(comparison.runB.screenshots)
-      .reduce((acc, screenshot) => Math.max(acc, screenshot.timing), 0);
+        .concat(comparison.runB.screenshots)
+        .reduce((acc, screenshot) => Math.max(acc, screenshot.timing), 0);
     runTimelineElement.appendChild(createTimelineXAxis(maxMsTimestamp));
   } else {
     runTimelineElement.style['overflow-x'] = 'scroll';

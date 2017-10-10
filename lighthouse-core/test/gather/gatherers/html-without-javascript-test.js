@@ -34,7 +34,7 @@ describe('HTML without JavaScript gatherer', () => {
       },
     };
     return htmlWithoutJavaScriptGather
-      .afterPass(opts)
+        .afterPass(opts)
       .then(_ => {
         assert.equal(opts.disableJavaScript, false);
       });

@@ -60,12 +60,12 @@ class WebappInstallBanner extends MultiCheckAudit {
       'hasIconsAtLeast192px',
     ];
     manifestValues.allChecks
-      .filter(item => bannerCheckIds.includes(item.id))
-      .forEach(item => {
-        if (!item.passing) {
-          failures.push(item.failureText);
-        }
-      });
+        .filter(item => bannerCheckIds.includes(item.id))
+        .forEach(item => {
+          if (!item.passing) {
+            failures.push(item.failureText);
+          }
+        });
   }
 
 

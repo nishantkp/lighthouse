@@ -72,18 +72,18 @@ function generateBoxPlotChartPerMetric() {
 
   function generateBoxPlotChart({title, data, type}) {
     data = data
-      .map(siteResult => {
-        return {
-          x: siteResult.metrics.map(m => m ? m[type] : null),
-          type: 'box',
-          name: siteResult.site,
-          boxpoints: 'all',
-          jitter: 0.9,
-          pointpos: -2,
-          hoverinfo: 'x+name',
-        };
-      })
-      .reverse(); // see: https://github.com/plotly/plotly.js/issues/1187
+        .map(siteResult => {
+          return {
+            x: siteResult.metrics.map(m => m ? m[type] : null),
+            type: 'box',
+            name: siteResult.site,
+            boxpoints: 'all',
+            jitter: 0.9,
+            pointpos: -2,
+            hoverinfo: 'x+name',
+          };
+        })
+        .reverse(); // see: https://github.com/plotly/plotly.js/issues/1187
 
     const layout = {
       title: title + ' ' + type,
@@ -153,7 +153,7 @@ function generateBoxPlotPerSite() {
       (acc, metric) => Math.max(acc, generatedResults[metric].length), 0);
   for (let i = 0; i < sitesCount; i++) {
     const data = metrics
-      .map(metric => ({
+        .map(metric => ({
         x: generatedResults[metric][i].metrics.map(m => m ? m.timing : null),
         name: metric,
         type: 'box',
@@ -162,7 +162,7 @@ function generateBoxPlotPerSite() {
         pointpos: -2,
         hoverinfo: 'x+name',
       }))
-      .reverse(); // see: https://github.com/plotly/plotly.js/issues/1187
+        .reverse(); // see: https://github.com/plotly/plotly.js/issues/1187
 
     const layout = {
       xaxis: {

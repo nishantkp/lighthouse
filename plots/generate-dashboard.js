@@ -10,12 +10,12 @@ const path = require('path');
 
 const opn = require('opn');
 const args = require('yargs')
-  .wrap(Math.min(process.stdout.columns, 120))
-  .example('node $0 out-parent-folder')
-  .example('node $0 out-1 out-2 out-3')
-  .help('help')
-  .demand(1)
-  .argv;
+    .wrap(Math.min(process.stdout.columns, 120))
+    .example('node $0 out-parent-folder')
+    .example('node $0 out-1 out-2 out-3')
+    .help('help')
+    .demand(1)
+    .argv;
 
 const constants = require('./constants');
 const utils = require('./utils');
@@ -108,8 +108,8 @@ function getInputPaths() {
     const fullPath = path.resolve(__dirname, relativePath);
     if (isOutParentFolder(fullPath)) {
       const paths = fs.readdirSync(fullPath)
-        .map(pathComponent => path.resolve(fullPath, pathComponent))
-        .filter(inputPath => utils.isDir(inputPath));
+          .map(pathComponent => path.resolve(fullPath, pathComponent))
+          .filter(inputPath => utils.isDir(inputPath));
       inputPaths = inputPaths.concat(paths);
       return;
     }

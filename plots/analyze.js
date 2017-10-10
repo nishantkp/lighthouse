@@ -11,10 +11,10 @@ const util = require('util');
 
 const opn = require('opn');
 const args = require('yargs')
-  .example('node $0 ./out-dir')
-  .help('help')
-  .demand(1)
-  .argv;
+    .example('node $0 ./out-dir')
+    .help('help')
+    .demand(1)
+    .argv;
 
 const constants = require('./constants');
 const utils = require('./utils');
@@ -107,7 +107,7 @@ function readResult(lighthouseReportPath) {
  */
 function groupByMetrics(results) {
   const metricNames = Metrics.metricsDefinitions.map(metric => metric.name)
-    .concat(Object.keys(constants.TIMING_NAME_MAP).map(key => constants.TIMING_NAME_MAP[key]));
+      .concat(Object.keys(constants.TIMING_NAME_MAP).map(key => constants.TIMING_NAME_MAP[key]));
 
   return metricNames.reduce((acc, metricName, index) => {
     acc[metricName] = results.map(siteResult => ({

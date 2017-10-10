@@ -40,9 +40,9 @@ describe('Manifest gatherer', () => {
   it('returns an artifact when manifest is saved as BOM UTF-8', () => {
     const fs = require('fs');
     const manifestWithoutBOM = fs.readFileSync(__dirname + '/../../fixtures/manifest.json')
-      .toString();
+        .toString();
     const manifestWithBOM = fs.readFileSync(__dirname + '/../../fixtures/manifest-bom.json')
-      .toString();
+        .toString();
 
     const getDriver = (data) => {
       return {

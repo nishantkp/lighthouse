@@ -237,11 +237,11 @@ function parseIcons(jsonInput, manifestUrl) {
   // individual icons are lost. Warn instead?
   const value = raw
     // 9.6(3)(1)
-    .filter(icon => icon.src !== undefined)
+      .filter(icon => icon.src !== undefined)
     // 9.6(3)(2)(1)
-    .map(icon => parseIcon(icon, manifestUrl))
+      .map(icon => parseIcon(icon, manifestUrl))
     // 9.6(3)(2)(2)
-    .filter(parsedIcon => parsedIcon.value.src.value !== undefined);
+      .filter(parsedIcon => parsedIcon.value.src.value !== undefined);
 
   return {
     raw,
@@ -299,9 +299,9 @@ function parseRelatedApplications(jsonInput) {
   // TODO(bckenny): spec says to skip apps missing `platform`, so debug messages
   // on individual apps are lost. Warn instead?
   const value = raw
-    .filter(application => !!application.platform)
-    .map(parseApplication)
-    .filter(parsedApp => !!parsedApp.value.id.value || !!parsedApp.value.url.value);
+      .filter(application => !!application.platform)
+      .map(parseApplication)
+      .filter(parsedApp => !!parsedApp.value.id.value || !!parsedApp.value.url.value);
 
   return {
     raw,

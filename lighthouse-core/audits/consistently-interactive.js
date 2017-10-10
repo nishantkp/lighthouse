@@ -149,9 +149,9 @@ class ConsistentlyInteractiveMetric extends Audit {
         period.end > FMPTsInMs + REQUIRED_QUIET_WINDOW &&
         period.end - period.start >= REQUIRED_QUIET_WINDOW;
     const networkQuietPeriods = this._findNetworkQuietPeriods(networkRecords, traceOfTab)
-      .filter(isLongEnoughQuietPeriod);
+        .filter(isLongEnoughQuietPeriod);
     const cpuQuietPeriods = this._findCPUQuietPeriods(longTasks, traceOfTab)
-      .filter(isLongEnoughQuietPeriod);
+        .filter(isLongEnoughQuietPeriod);
 
     const cpuQueue = cpuQuietPeriods.slice();
     const networkQueue = networkQuietPeriods.slice();
@@ -216,7 +216,7 @@ class ConsistentlyInteractiveMetric extends Audit {
         }
 
         const longTasks = TracingProcessor.getMainThreadTopLevelEvents(traceOfTab)
-          .filter(event => event.duration >= 50);
+            .filter(event => event.duration >= 50);
         const quietPeriodInfo = this.findOverlappingQuietPeriods(longTasks, networkRecords,
             traceOfTab);
         const cpuQuietPeriod = quietPeriodInfo.cpuQuietPeriod;

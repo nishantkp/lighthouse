@@ -39,13 +39,13 @@ class TraceOfTab extends ComputedArtifact {
     // Parse the trace for our key events and sort them by timestamp. Note: sort
     // *must* be stable to keep events correctly nested.
     const keyEvents = trace.traceEvents
-      .filter(e => {
-        return e.cat.includes('blink.user_timing') ||
+        .filter(e => {
+          return e.cat.includes('blink.user_timing') ||
           e.cat.includes('loading') ||
           e.cat.includes('devtools.timeline') ||
           e.name === 'TracingStartedInPage';
-      })
-      .stableSort((event0, event1) => event0.ts - event1.ts);
+        })
+        .stableSort((event0, event1) => event0.ts - event1.ts);
 
     // The first TracingStartedInPage in the trace is definitely our renderer thread of interest
     // Beware: the tracingStartedInPage event can appear slightly after a navigationStart
@@ -94,11 +94,11 @@ class TraceOfTab extends ComputedArtifact {
     // subset all trace events to just our tab's process (incl threads other than main)
     // stable-sort events to keep them correctly nested.
     const processEvents = trace.traceEvents
-      .filter(e => e.pid === startedInPageEvt.pid)
-      .stableSort((event0, event1) => event0.ts - event1.ts);
+        .filter(e => e.pid === startedInPageEvt.pid)
+        .stableSort((event0, event1) => event0.ts - event1.ts);
 
     const mainThreadEvents = processEvents
-      .filter(e => e.tid === startedInPageEvt.tid);
+        .filter(e => e.tid === startedInPageEvt.tid);
 
     const traceEnd = trace.traceEvents.reduce((max, evt) => {
       return max.ts > evt.ts ? max : evt;

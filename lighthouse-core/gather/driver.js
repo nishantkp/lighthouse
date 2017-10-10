@@ -346,24 +346,24 @@ class Driver {
       const origin = new URL(pageUrl).origin;
 
       registrations
-        .filter(reg => {
-          const swOrigin = new URL(reg.scopeURL).origin;
+          .filter(reg => {
+            const swOrigin = new URL(reg.scopeURL).origin;
 
-          return origin === swOrigin;
-        })
-        .forEach(reg => {
-          versions.forEach(ver => {
+            return origin === swOrigin;
+          })
+          .forEach(reg => {
+            versions.forEach(ver => {
             // Ignore workers unaffiliated with this registration
-            if (ver.registrationId !== reg.registrationId) {
-              return;
-            }
+              if (ver.registrationId !== reg.registrationId) {
+                return;
+              }
 
-            // Throw if service worker for this origin has active controlledClients.
-            if (ver.controlledClients && ver.controlledClients.length > 0) {
-              throw new Error('You probably have multiple tabs open to the same origin.');
-            }
+              // Throw if service worker for this origin has active controlledClients.
+              if (ver.controlledClients && ver.controlledClients.length > 0) {
+                throw new Error('You probably have multiple tabs open to the same origin.');
+              }
+            });
           });
-        });
     });
   }
 
@@ -651,7 +651,7 @@ class Driver {
       })
         .then(properties => {
           const propertyForName = properties.result
-            .find(property => property.name === propName);
+              .find(property => property.name === propName);
 
           if (propertyForName && propertyForName.value) {
             resolve(propertyForName.value.value);

@@ -81,15 +81,15 @@ class Charts {
     Utils.removeChildren(document.getElementById('charts'));
     for (const [metricName, site] of Object.entries(dashboardResults[currentMetric])) {
       const percentiles = Object.entries(site)
-        .map(([batchName, batch]) => {
-          return {
-            x: batchName,
-            higher: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.8),
-            median: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.5),
-            lower: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.2),
-          };
-        })
-        .slice(-1 * numberOfBatchesToShow);
+          .map(([batchName, batch]) => {
+            return {
+              x: batchName,
+              higher: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.8),
+              median: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.5),
+              lower: Utils.calculatePercentile(batch.map(metric => metric.timing), 0.2),
+            };
+          })
+          .slice(-1 * numberOfBatchesToShow);
 
       const median = {
         x: percentiles.map(r => r.x),

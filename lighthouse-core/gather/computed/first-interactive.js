@@ -103,15 +103,15 @@ class FirstInteractive extends ComputedArtifact {
     }
 
     return clusters
-      // add some useful information about the cluster
-      .map(tasks => {
-        const start = tasks[0].start;
-        const end = tasks[tasks.length - 1].end;
-        const duration = end - start;
-        return {start, end, duration};
-      })
-      // filter out clusters that started after the window because of our clusteringWindowEnd
-      .filter(cluster => cluster.start < windowEnd);
+    // add some useful information about the cluster
+        .map(tasks => {
+          const start = tasks[0].start;
+          const end = tasks[tasks.length - 1].end;
+          const duration = end - start;
+          return {start, end, duration};
+        })
+    // filter out clusters that started after the window because of our clusteringWindowEnd
+        .filter(cluster => cluster.start < windowEnd);
   }
 
   /**
@@ -182,7 +182,7 @@ class FirstInteractive extends ComputedArtifact {
     }
 
     const longTasksAfterFMP = TracingProcessor.getMainThreadTopLevelEvents(traceOfTab, FMP)
-      .filter(evt => evt.duration >= LONG_TASK_THRESHOLD);
+        .filter(evt => evt.duration >= LONG_TASK_THRESHOLD);
     const firstInteractive = FirstInteractive.findQuietWindow(FMP, traceEnd, longTasksAfterFMP);
 
     const valueInMs = Math.max(firstInteractive, DCL);

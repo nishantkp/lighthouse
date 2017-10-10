@@ -50,14 +50,14 @@ gulp.task('lint', () => {
     'test/**/*.js',
     'gulpfile.js',
   ])
-    .pipe($.eslint())
-    .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError());
+      .pipe($.eslint())
+      .pipe($.eslint.format())
+      .pipe($.eslint.failAfterError());
 });
 
 gulp.task('images', () => {
   return gulp.src('app/images/**/*')
-    .pipe(gulp.dest(`dist/images`));
+      .pipe(gulp.dest(`dist/images`));
 });
 
 // Concat Report and Viewer stylesheets into single viewer.css file.
@@ -66,16 +66,16 @@ gulp.task('concat-css', () => {
   const viewerCss = gulp.src('app/styles/viewer.css');
 
   return streamqueue({objectMode: true}, reportCss, viewerCss)
-    .pipe($.concat('viewer.css'))
-    .pipe(gulp.dest(`dist/styles`));
+      .pipe($.concat('viewer.css'))
+      .pipe(gulp.dest(`dist/styles`));
 });
 
 gulp.task('html', () => {
   const templatesStr = ReportGenerator.reportTemplates;
 
   return gulp.src('app/index.html')
-    .pipe($.replace(/%%LIGHTHOUSE_TEMPLATES%%/, _ => templatesStr))
-    .pipe(gulp.dest('dist'));
+      .pipe($.replace(/%%LIGHTHOUSE_TEMPLATES%%/, _ => templatesStr))
+      .pipe(gulp.dest('dist'));
 });
 
 gulp.task('pwa', () => {
@@ -90,7 +90,7 @@ gulp.task('polyfills', () => {
     'node_modules/url-search-params/build/url-search-params.js',
     'node_modules/whatwg-fetch/fetch.js',
   ])
-    .pipe(gulp.dest(`dist/src/polyfills`));
+      .pipe(gulp.dest(`dist/src/polyfills`));
 });
 
 // Combine multiple JS bundles into single viewer.js file.
@@ -99,10 +99,10 @@ gulp.task('compile-js', () => {
   const generatorFilename = __dirname + '/../lighthouse-core/report/v2/report-generator.js';
   const opts = {standalone: 'ReportGenerator'};
   const generatorJs = browserify(generatorFilename, opts)
-    .transform('brfs')
-    .bundle()
-    .pipe(source('report-generator.js'))
-    .pipe(vinylBuffer());
+      .transform('brfs')
+      .bundle()
+      .pipe(source('report-generator.js'))
+      .pipe(vinylBuffer());
 
   // JS bundle from report renderer scripts.
   const baseReportJs = streamFromString(ReportGenerator.reportJs, 'report.js');
@@ -121,10 +121,10 @@ gulp.task('compile-js', () => {
 
   // Concat and uglify JS bundles in this order.
   return streamqueue({objectMode: true}, generatorJs, baseReportJs, deps, versionJs, viewerJs)
-    .pipe($.concat('viewer.js', {newLine: ';\n'}))
-    .pipe(uglify())
-    .pipe(license())
-    .pipe(gulp.dest(`dist/src`));
+      .pipe($.concat('viewer.js', {newLine: ';\n'}))
+      .pipe(uglify())
+      .pipe(license())
+      .pipe(gulp.dest(`dist/src`));
 });
 
 gulp.task('clean', () => {
@@ -167,7 +167,7 @@ gulp.task('create-dir-for-gh-pages', () => {
   del.sync([`dist/viewer`]);
 
   return gulp.src(`dist/**/*`)
-    .pipe(gulp.dest(`dist/viewer/viewer`));
+      .pipe(gulp.dest(`dist/viewer/viewer`));
 });
 
 gulp.task('deploy', cb => {

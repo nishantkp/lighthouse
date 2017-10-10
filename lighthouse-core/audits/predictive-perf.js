@@ -96,10 +96,10 @@ class PredictivePerf extends Audit {
    */
   static getLastLongTaskEndTime(nodeTiming) {
     return Array.from(nodeTiming.entries())
-      .filter(([node, timing]) => node.type === Node.TYPES.CPU &&
+        .filter(([node, timing]) => node.type === Node.TYPES.CPU &&
           timing.endTime - timing.startTime > 50)
-      .map(([_, timing]) => timing.endTime)
-      .reduce((max, x) => Math.max(max, x), 0);
+        .map(([_, timing]) => timing.endTime)
+        .reduce((max, x) => Math.max(max, x), 0);
   }
 
   /**

@@ -75,9 +75,9 @@ class ReportGeneratorV2 {
     const firstReplacement = replacements[0];
     const nextReplacements = replacements.slice(1);
     return source
-      .split(firstReplacement.search)
-      .map(part => ReportGeneratorV2.replaceStrings(part, nextReplacements))
-      .join(firstReplacement.replacement);
+        .split(firstReplacement.search)
+        .map(part => ReportGeneratorV2.replaceStrings(part, nextReplacements))
+        .join(firstReplacement.replacement);
   }
 
   /**
@@ -117,9 +117,9 @@ class ReportGeneratorV2 {
    */
   generateReportHtml(reportAsJson) {
     const sanitizedJson = JSON.stringify(reportAsJson)
-      .replace(/</g, '\\u003c') // replaces opening script tags
-      .replace(/\u2028/g, '\\u2028') // replaces line separators ()
-      .replace(/\u2029/g, '\\u2029'); // replaces paragraph separators
+        .replace(/</g, '\\u003c') // replaces opening script tags
+        .replace(/\u2028/g, '\\u2028') // replaces line separators ()
+        .replace(/\u2029/g, '\\u2029'); // replaces paragraph separators
     const sanitizedJavascript = REPORT_JAVASCRIPT.replace(/<\//g, '\\u003c/');
 
     return ReportGeneratorV2.replaceStrings(REPORT_TEMPLATE, [

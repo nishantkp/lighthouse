@@ -24,12 +24,12 @@ function findPasswordInputsWithPreventedPaste() {
   }
 
   return Array.from(document.querySelectorAll('input[type="password"]'))
-    .filter(passwordInput =>
+      .filter(passwordInput =>
       !passwordInput.dispatchEvent(
           new ClipboardEvent('paste', {cancelable: true})
       )
-    )
-    .map(passwordInput => ({
+      )
+      .map(passwordInput => ({
       snippet: getOuterHTMLSnippet(passwordInput),
     }));
 }

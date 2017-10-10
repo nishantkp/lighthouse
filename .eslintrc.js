@@ -20,12 +20,13 @@ module.exports = {
       SwitchCase: 1,
       VariableDeclarator: 2,
       CallExpression: {arguments: 2},
-      MemberExpression: 1,
+      MemberExpression: 2,
       FunctionExpression: {body: 1, parameters: 2},
       ignoredNodes: [
         'ConditionalExpression > :matches(.consequent, .alternate)',
         'VariableDeclarator > ArrowFunctionExpression > :expression.body',
         'CallExpression > ArrowFunctionExpression > :expression.body',
+        'MemberExpression:matches([property.name="then"], [property.name="catch"])',
       ],
     }],
     'max-len': [2, 100, {

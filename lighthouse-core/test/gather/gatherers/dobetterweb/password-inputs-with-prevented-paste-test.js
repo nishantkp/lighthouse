@@ -19,17 +19,17 @@ describe('PasswordInputsWithPreventedPaste gatherer', () => {
 
   it('returns an artifact', () => {
     return gatherer
-      .afterPass({
-        driver: {
-          evaluateAsync() {
-            return Promise.resolve([
-              {
-                snippet: '<input type="password" onpaste="return false"/>',
-              },
-            ]);
+        .afterPass({
+          driver: {
+            evaluateAsync() {
+              return Promise.resolve([
+                {
+                  snippet: '<input type="password" onpaste="return false"/>',
+                },
+              ]);
+            },
           },
-        },
-      })
+        })
       .then(artifact => {
         assert.ok(typeof artifact === 'object');
         assert.ok(artifact[0].snippet.length > 0);

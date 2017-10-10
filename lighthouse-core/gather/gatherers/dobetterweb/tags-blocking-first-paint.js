@@ -28,32 +28,32 @@ function collectTagsThatBlockFirstPaint() {
   return new Promise((resolve, reject) => {
     try {
       const tagList = [...document.querySelectorAll('link, head script[src]')]
-        .filter(tag => {
-          if (tag.tagName === 'SCRIPT') {
-            return !tag.hasAttribute('async') &&
+          .filter(tag => {
+            if (tag.tagName === 'SCRIPT') {
+              return !tag.hasAttribute('async') &&
                 !tag.hasAttribute('defer') &&
                 !/^data:/.test(tag.src);
-          }
+            }
 
-          // Filter stylesheet/HTML imports that block rendering.
-          // https://www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/
-          // https://www.w3.org/TR/html-imports/#dfn-import-async-attribute
-          const blockingStylesheet = (tag.rel === 'stylesheet' &&
+            // Filter stylesheet/HTML imports that block rendering.
+            // https://www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/
+            // https://www.w3.org/TR/html-imports/#dfn-import-async-attribute
+            const blockingStylesheet = (tag.rel === 'stylesheet' &&
               window.matchMedia(tag.media).matches && !tag.disabled);
-          const blockingImport = tag.rel === 'import' && !tag.hasAttribute('async');
-          return blockingStylesheet || blockingImport;
-        })
-        .map(tag => {
-          return {
-            tagName: tag.tagName,
-            url: tag.tagName === 'LINK' ? tag.href : tag.src,
-            src: tag.src,
-            href: tag.href,
-            rel: tag.rel,
-            media: tag.media,
-            disabled: tag.disabled,
-          };
-        });
+            const blockingImport = tag.rel === 'import' && !tag.hasAttribute('async');
+            return blockingStylesheet || blockingImport;
+          })
+          .map(tag => {
+            return {
+              tagName: tag.tagName,
+              url: tag.tagName === 'LINK' ? tag.href : tag.src,
+              src: tag.src,
+              href: tag.href,
+              rel: tag.rel,
+              media: tag.media,
+              disabled: tag.disabled,
+            };
+          });
       resolve(tagList);
     } catch (e) {
       const friendly = 'Unable to gather Scripts/Stylesheets/HTML Imports on the page';

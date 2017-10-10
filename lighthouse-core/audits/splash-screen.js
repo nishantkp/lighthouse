@@ -49,12 +49,12 @@ class SplashScreen extends MultiCheckAudit {
     ];
 
     manifestValues.allChecks
-      .filter(item => splashScreenCheckIds.includes(item.id))
-      .forEach(item => {
-        if (!item.passing) {
-          failures.push(item.failureText);
-        }
-      });
+        .filter(item => splashScreenCheckIds.includes(item.id))
+        .forEach(item => {
+          if (!item.passing) {
+            failures.push(item.failureText);
+          }
+        });
   }
 
 

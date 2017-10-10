@@ -39,7 +39,7 @@ describe('HTTP Redirect gatherer', () => {
 
     httpRedirectGather.beforePass(opts);
     return httpRedirectGather
-      .afterPass(opts)
+        .afterPass(opts)
       .then(_ => {
         assert.equal(opts.url, 'https://example.com');
       });

@@ -10,8 +10,8 @@ const path = require('path');
 
 const opn = require('opn');
 const args = require('yargs')
-  .default('runs', 1)
-  .argv;
+    .default('runs', 1)
+    .argv;
 
 const Metrics = require('../../lighthouse-core/lib/traces/pwmetrics-events');
 
@@ -117,8 +117,8 @@ function getRunDir(sitePath, runIndex) {
  */
 function sortAndFilterRunFolders(folders) {
   return folders
-    .filter(folder => folder !== '.DS_Store')
-    .sort((a, b) => Number(a) - Number(b));
+      .filter(folder => folder !== '.DS_Store')
+      .sort((a, b) => Number(a) - Number(b));
 }
 
 /**
@@ -161,8 +161,8 @@ function analyzeSingleRunScreenshots(runPath) {
    */
   function getTiming(id) {
     return Metrics.metricsDefinitions
-      .find(metric => metric.id === id)
-      .getTiming(lighthouseResults.audits);
+        .find(metric => metric.id === id)
+        .getTiming(lighthouseResults.audits);
   }
 
   /**
@@ -171,8 +171,8 @@ function analyzeSingleRunScreenshots(runPath) {
    */
   function getTimestamp(id) {
     return Metrics.metricsDefinitions
-      .find(metric => metric.id === id)
-      .getTs(lighthouseResults.audits) / 1000; // convert to ms
+        .find(metric => metric.id === id)
+        .getTs(lighthouseResults.audits) / 1000; // convert to ms
   }
 }
 

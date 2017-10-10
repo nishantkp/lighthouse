@@ -119,7 +119,7 @@ describe('Trace of Tab computed artifact:', () => {
     const mainPid = trace.mainThreadEvents[0].pid;
 
     const freshProcessEvents = JSON.parse(traceJson).traceEvents
-      .filter(e => e.pid === mainPid);
+        .filter(e => e.pid === mainPid);
 
     // Group all events with the same timestamp in original trace order.
     const tsMap = new Map();

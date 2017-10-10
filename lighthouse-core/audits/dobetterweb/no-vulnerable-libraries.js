@@ -86,7 +86,7 @@ class NoVulnerableLibrariesAudit extends Audit {
    */
   static highestSeverity(vulns) {
     const sortedVulns = vulns
-      .sort((a, b) => b.numericSeverity - a.numericSeverity);
+        .sort((a, b) => b.numericSeverity - a.numericSeverity);
     return sortedVulns[0].severity;
   }
 

@@ -37,27 +37,27 @@ class ExternalAnchorsUseRelNoopenerAudit extends Audit {
     // https://github.com/GoogleChrome/lighthouse/issues/1233
     // https://github.com/GoogleChrome/lighthouse/issues/1345
     const failingAnchors = artifacts.AnchorsWithNoRelNoopener
-      .filter(anchor => {
-        try {
-          return new URL(anchor.href).host !== pageHost;
-        } catch (err) {
-          debugString = 'Lighthouse was unable to determine the destination ' +
+        .filter(anchor => {
+          try {
+            return new URL(anchor.href).host !== pageHost;
+          } catch (err) {
+            debugString = 'Lighthouse was unable to determine the destination ' +
               'of some anchor tags. If they are not used as hyperlinks, ' +
               'consider removing the _blank target.';
-          return true;
-        }
-      })
-      .map(anchor => {
-        return {
-          href: anchor.href || 'Unknown',
-          target: anchor.target || '',
-          rel: anchor.rel || '',
-          url: '<a' +
+            return true;
+          }
+        })
+        .map(anchor => {
+          return {
+            href: anchor.href || 'Unknown',
+            target: anchor.target || '',
+            rel: anchor.rel || '',
+            url: '<a' +
               (anchor.href ? ` href="${anchor.href}"` : '') +
               (anchor.target ? ` target="${anchor.target}"` : '') +
               (anchor.rel ? ` rel="${anchor.rel}"` : '') + '>',
-        };
-      });
+          };
+        });
 
     const headings = [
       {key: 'href', itemType: 'url', text: 'URL'},

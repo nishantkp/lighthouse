@@ -11,7 +11,7 @@ class ServiceWorker extends Gatherer {
   beforePass(options) {
     const driver = options.driver;
     return driver
-      .getServiceWorkerVersions()
+        .getServiceWorkerVersions()
       .then(data => {
         return {
           versions: data.versions,

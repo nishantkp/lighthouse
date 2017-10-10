@@ -171,7 +171,7 @@ class GatherRunner {
    */
   static beforePass(options, gathererResults) {
     const blockedUrls = (options.config.blockedUrlPatterns || [])
-      .concat(options.flags.blockedUrlPatterns || []);
+        .concat(options.flags.blockedUrlPatterns || []);
     const blankPage = options.config.blankPage;
     const blankDuration = options.config.blankDuration;
     const pass = GatherRunner.loadBlank(options.driver, blankPage, blankDuration)

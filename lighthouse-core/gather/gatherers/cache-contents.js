@@ -43,7 +43,7 @@ class CacheContents extends Gatherer {
     const driver = options.driver;
 
     return driver
-      .evaluateAsync(`(${getCacheContents.toString()}())`)
+        .evaluateAsync(`(${getCacheContents.toString()}())`)
       .then(returnedValue => {
         if (!returnedValue || !Array.isArray(returnedValue)) {
           throw new Error('Unable to retrieve cache contents');

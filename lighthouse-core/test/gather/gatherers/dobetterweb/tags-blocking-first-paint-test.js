@@ -104,7 +104,7 @@ describe('First paint blocking tags', () => {
 
   it('return filtered and indexed requests', () => {
     const actual = tagsBlockingFirstPaint
-      ._filteredAndIndexedByUrl(traceData.networkRecords);
+        ._filteredAndIndexedByUrl(traceData.networkRecords);
     return assert.deepEqual(actual, {
       'http://google.com/css/style.css': {
         isLinkPreload: false,

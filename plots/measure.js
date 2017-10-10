@@ -11,36 +11,36 @@ const parseURL = require('url').parse;
 
 const mkdirp = require('mkdirp');
 const args = require('yargs')
-  .wrap(Math.min(process.stdout.columns, 120))
-  .help('help')
-  .usage('node $0 [options]')
-  .example('node $0 -n 3 --sites-path ./sample-sites.json')
-  .example('node $0 --site https://google.com/')
-  .example('node $0 --subset')
-  .describe({
-    'out': 'Custom out path',
-    'n': 'Number of runs per site',
-    'reuse-chrome': 'Reuse the same Chrome instance across all site runs',
-    'keep-first-run': 'If you use --reuse-chrome, by default the first run results are discarded',
-  })
-  .default('n', 3)
-  .group(
-      ['disable-device-emulation', 'disable-cpu-throttling', 'disable-network-throttling'],
-      'Lighthouse settings:')
-  .boolean(['disable-device-emulation', 'disable-cpu-throttling', 'disable-network-throttling'])
-  .describe({
-    'disable-device-emulation': 'Disable Nexus 5X emulation',
-    'disable-cpu-throttling': 'Disable CPU throttling',
-    'disable-network-throttling': 'Disable network throttling',
-  })
-  .group(['sites-path', 'subset', 'site'], 'Options to specify sites:')
-  .describe({
-    'sites-path': 'Include relative path of a json file with urls to run',
-    'subset': 'Measure a subset of popular sites',
-    'site': 'Include a specific site url to run',
-  })
-  .default('sites-path', 'sites.js')
-  .argv;
+    .wrap(Math.min(process.stdout.columns, 120))
+    .help('help')
+    .usage('node $0 [options]')
+    .example('node $0 -n 3 --sites-path ./sample-sites.json')
+    .example('node $0 --site https://google.com/')
+    .example('node $0 --subset')
+    .describe({
+      'out': 'Custom out path',
+      'n': 'Number of runs per site',
+      'reuse-chrome': 'Reuse the same Chrome instance across all site runs',
+      'keep-first-run': 'If you use --reuse-chrome, by default the first run results are discarded',
+    })
+    .default('n', 3)
+    .group(
+        ['disable-device-emulation', 'disable-cpu-throttling', 'disable-network-throttling'],
+        'Lighthouse settings:')
+    .boolean(['disable-device-emulation', 'disable-cpu-throttling', 'disable-network-throttling'])
+    .describe({
+      'disable-device-emulation': 'Disable Nexus 5X emulation',
+      'disable-cpu-throttling': 'Disable CPU throttling',
+      'disable-network-throttling': 'Disable network throttling',
+    })
+    .group(['sites-path', 'subset', 'site'], 'Options to specify sites:')
+    .describe({
+      'sites-path': 'Include relative path of a json file with urls to run',
+      'subset': 'Measure a subset of popular sites',
+      'site': 'Include a specific site url to run',
+    })
+    .default('sites-path', 'sites.js')
+    .argv;
 
 const constants = require('./constants.js');
 const utils = require('./utils.js');
@@ -205,7 +205,7 @@ function analyzeWithLighthouse(launcher, url, outputPath, assetsPath, {ignoreRun
         return;
       }
       return assetSaver
-        .saveAssets(lighthouseResults.artifacts, lighthouseResults.audits, assetsPath)
+          .saveAssets(lighthouseResults.artifacts, lighthouseResults.audits, assetsPath)
         .then(() => {
           lighthouseResults.artifacts = undefined;
           return Printer.write(lighthouseResults, flags.output, outputPath);
@@ -225,8 +225,8 @@ function sanitize(string) {
   const reservedRe = /^\.+$/;
 
   return string
-    .replace(illegalRe, '.')
-    .replace(controlRe, '\u2022')
-    .replace(reservedRe, '')
-    .replace(/\s+/g, '_');
+      .replace(illegalRe, '.')
+      .replace(controlRe, '\u2022')
+      .replace(reservedRe, '')
+      .replace(/\s+/g, '_');
 }
